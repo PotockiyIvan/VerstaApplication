@@ -18,25 +18,6 @@ namespace VerstaApplication.Domain.Repositories.EntityFramework
         }
 
         /// <summary>
-        /// Удалить заказ.
-        /// </summary>
-        /// <param name="id"></param>
-        public void DeleteOrder(Guid id)
-        {
-            context.Orders.Remove(GetOrderById(id));
-        }
-
-        /// <summary>
-        /// Выбрать заказ по id.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public Order GetOrderById(Guid id)
-        {
-            return context.Orders.FirstOrDefault(x => x.Id == id);
-        }
-
-        /// <summary>
         /// Получить все заказы.
         /// </summary>
         /// <returns></returns>
@@ -51,9 +32,18 @@ namespace VerstaApplication.Domain.Repositories.EntityFramework
         /// <param name="entity"></param>
         public void SaveOrder(Order entity)
         {  
-
             if (entity.Id == default)
+            {
+                int orderNumber;
+
+                if (context.Orders.Any())
+                    orderNumber = GetOrders().OrderBy(x => x.OrderNumber).Last().OrderNumber;
+                else
+                    orderNumber = 0;
+                
+                entity.OrderNumber = orderNumber == 0 ? 1 :++orderNumber;
                 context.Entry(entity).State = EntityState.Added;
+            }
             else
                 context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();

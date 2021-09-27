@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace VerstaApplication.Domain.Entities
         /// Номер заказа.
         /// </summary>
         [Required]
-        public int OrderNumber { get; }
+        public int OrderNumber { get; set; }
 
         /// <summary>
         /// Город отправителя.
@@ -53,6 +54,7 @@ namespace VerstaApplication.Domain.Entities
         /// </summary>
         [Required]
         [Display(Name = "Вес груза(кг)")]
+        [Range(0.001,10000)]
         public decimal CargoWeight { get; set; }
 
         /// <summary>

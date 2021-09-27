@@ -19,17 +19,24 @@ namespace VerstatApplication.Controllers
 
         public IActionResult Index()
         {
-            //var model = dataManager.Orders.GetOrders().OrderBy(x => x.OrderNumber);
-            //return View(model);
-
             ViewBag.DataManager = dataManager;
             return View(ViewBag.DataManager);
         }
 
-        public IActionResult NewOrder(Guid id)
+        public IActionResult NewOrder()
         {
             Order entity = new Order();
             return View(entity);
+        }
+
+        [HttpPost]
+        public IActionResult NewOrder(Order model)
+        {
+            if (ModelState.IsValid)
+                dataManager.Orders.SaveOrder(model);
+
+            ViewBag.DataManager = dataManager;
+            return View("Index", ViewBag.DataManager);
         }
     }
 }

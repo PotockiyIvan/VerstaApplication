@@ -15,22 +15,10 @@ namespace VerstaApplication.Domain.Repositories.Abstract
         IQueryable<Order> GetOrders();
 
         /// <summary>
-        /// Выбрать заказ по id.
-        /// </summary>
-        /// <param name="id">Первичный ключ.</param>
-        /// <returns></returns>
-        Order GetOrderById(Guid id);
-
-        /// <summary>
         /// Сохранить заказ.
         /// </summary>
         /// <param name="entity"></param>
         void SaveOrder(Order entity);
 
-        /// <summary>
-        /// Удалить заказ.
-        /// </summary>
-        /// <param name="id">Первичный ключ.</param>
-        void DeleteOrder(Guid id);
     }
 }
