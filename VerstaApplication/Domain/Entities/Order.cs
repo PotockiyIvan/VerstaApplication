@@ -18,7 +18,7 @@ namespace VerstaApplication.Domain.Entities
         /// Номер заказа.
         /// </summary>
         [Required]
-        protected int OrderNumber { get; }
+        public int OrderNumber { get; }
 
         /// <summary>
         /// Город отправителя.
@@ -52,7 +52,7 @@ namespace VerstaApplication.Domain.Entities
         /// Вес груза.
         /// </summary>
         [Required]
-        [Display(Name = "Вес груза")]
+        [Display(Name = "Вес груза(кг)")]
         public decimal CargoWeight { get; set; }
 
         /// <summary>

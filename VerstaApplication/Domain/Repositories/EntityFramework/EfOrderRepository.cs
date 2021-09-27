@@ -50,7 +50,8 @@ namespace VerstaApplication.Domain.Repositories.EntityFramework
         /// </summary>
         /// <param name="entity"></param>
         public void SaveOrder(Order entity)
-        {
+        {  
+
             if (entity.Id == default)
                 context.Entry(entity).State = EntityState.Added;
             else
